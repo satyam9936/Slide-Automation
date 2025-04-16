@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 export default function Navbar() {
   return (
@@ -11,6 +12,9 @@ export default function Navbar() {
         <Link href="#features">Features</Link>
         <Link href="#pricing">Pricing</Link>
         <Link href="#about">About</Link>
+        <Button className="bg-white text-primary">
+          <Link href="/dashboard">Login</Link>
+        </Button>
       </nav>
     </div>
   );
