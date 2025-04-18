@@ -1,0 +1,45 @@
+ model User {
+  id            String         @id @default(uuid())
+  clerkId       String         @unique     
+  email         String         @unique
+  firstname     String         @unique
+  lastname      String         @unique
+  createdAt     DateTime       @default(now()) 
+  subscription  Subscription?
+  automations   Automations[]  // One-to-many
+  integrations  Integrations[] // ✅ Fixed: one-to-many
+}
+
+model Subscription {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("subscriptions")
+}
+
+model Automations {
+  id        String     @id @default(uuid())
+  name      String     @default("Untitled")
+  createdAt DateTime   @default(now())
+  active    Boolean    @default(false)
+
+  userId    String
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("automations")
+}
+
+model Integrations {
+  id          String       @id @default(uuid())
+  name        INTEGRATIONS @default(INSTAGRAM)
+  createdAt   DateTime  @default(now())
+  userId      String?   @db.Uuid
+  token       String     @unique
+  expireAt    DateTime? 
+  intagramId  String? 
+  user        User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+
+ 
+}
