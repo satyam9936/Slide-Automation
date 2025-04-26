@@ -1,10 +1,12 @@
-import React from 'react'
-
-type Props = {}
-
-const Loading = (props: Props) => {
+type LoaderProps = {
+  // existing props
+  message?: string; // Add the message prop as optional
+};
+const Loader = (props: LoaderProps) => {
   return (
-    <div className='h-screen flex justify-center items-center'></div>
-  )
-}
-export default Loading
+    <div>
+      {/* existing loader implementation */}
+      {props.message && <p>{props.message}</p>} {/* Render the message if provided */}
+    </div>
+  );
+};
