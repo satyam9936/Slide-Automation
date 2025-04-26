@@ -24,7 +24,9 @@ const Sidebar = ({ slug }: Props) => {
       rounded-3xl
       overflow-hidden
       border-[#545454]
-      bg-gradient-to-b from-[#768BDD] via-[#171717] to-[#768BDD]
+      bg-gradient-to-b from-[#768BDD]
+       via-[#171717]
+        to-[#768BDD]
       '
     >
       <div
@@ -47,7 +49,7 @@ p-5 justify-center'>
 </div>
 
 <div  className='flex flex-col py-3 '>
-  
+
 </div>
 </div>
 </div>
