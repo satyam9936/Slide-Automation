@@ -1,6 +1,7 @@
 import { usePath } from '@/hooks/user-nav';
 import LogoSmall from '@/svgs/logo-small';
 import React from 'react';
+import Items from './items';
 
 type Props = {
   slug: string;
@@ -48,7 +49,9 @@ p-5 justify-center'>
     <LogoSmall/>
 </div>
 
-<div  className='flex flex-col py-3 '>
+<div  className='flex flex-col py-3'>
+  <Items page={page}
+   slug={slug}/>
 
 </div>
 </div>
