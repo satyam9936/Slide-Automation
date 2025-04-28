@@ -1,28 +1,21 @@
-import { Spinner } from "@/components/global/loader/spinner"
+import { cn } from "@/lib/utils";
+import { Spinner } from "./spinner";
 
-interface LoaderProps {
-  text?: string
-  fullScreen?: boolean
-  size?: "sm" | "md" | "lg" | "xl"
-  variant?: "default" | "primary" | "secondary" | "ghost"
+type Props = {
+  state: boolean;
+  className?: string;
+  children: React.ReactNode;
+  color?: string;
+};
+
+function Loader({ children, state, className, color }: Props) {
+  return state ? (
+    <div className={cn(className)}>
+      <Spinner color={color} />
+    </div>
+  ) : (
+    children
+  );
 }
 
-export function Loader({ text, fullScreen = false, size = "md", variant = "primary" }: LoaderProps) {
-  const Container = fullScreen ? "div" : "div"
-
-  return (
-    <Container
-      className={cn(
-        "flex flex-col items-center justify-center gap-2",
-        fullScreen && "fixed inset-0 z-50 bg-background/80 backdrop-blur-sm",
-      )}
-    >
-      <Spinner size={size} variant={variant} />
-      {text && <p className="text-sm text-muted-foreground">{text}</p>}
-    </Container>
-  )
-}
-
-function cn(...classes: (string | boolean | undefined)[]) {
-  return classes.filter(Boolean).join(" ")
-}
+export default Loader;

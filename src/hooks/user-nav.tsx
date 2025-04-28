@@ -1,6 +1,5 @@
 'use client'
 import { usePathname } from "next/navigation"
-import React from "react"
 
 export const usePath =()=>{
     const pathname= usePathname()
