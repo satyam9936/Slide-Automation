@@ -1,5 +1,5 @@
 "use client";
-import { usePath} from "@/hooks/user-nav";
+import { usePaths} from "@/hooks/user-nav";
 import Logo from "@/svgs/logo";
 import React from "react";
 import Items from "./items";
@@ -13,7 +13,7 @@ type Props = {
 };
 
 const Sidebar = ({ slug }: Props) => {
-  const { page } = usePath();
+  const { page } = usePaths();
 
   return (
     <div
