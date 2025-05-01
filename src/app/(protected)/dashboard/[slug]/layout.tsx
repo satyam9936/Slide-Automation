@@ -1,3 +1,4 @@
+import InfoBar from "@/components/global/Infobar";
 import Sidebar from "@/components/global/sidebar"; // Import your actual Sidebar component
 import Navbar from "@/components/Section/Navbar";
 import React from "react";
@@ -24,12 +25,9 @@ const Layout = ({ children, params }: Props) => {
       overflow-auto
       "
         >
-         <Navbar/>
+         <InfoBar slug={params.slug}/>
+         {children}
         </div>
-
-      <main className="flex-1 p-3">
-        {children}
-      </main>
     </div>
   );
 };

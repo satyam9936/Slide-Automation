@@ -1,4 +1,4 @@
-import { PAGE_ICON } from "@/constants/pages";
+import { PAGE_ICON } from "@/constants/page";
 import React from "react";
 
 type Props = {
