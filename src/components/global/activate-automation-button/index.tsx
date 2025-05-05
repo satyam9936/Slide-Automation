@@ -10,6 +10,7 @@ type Props = {
   id: string;
 };
 
+
 const ActivateAutomationButton = ({ id }: Props) => {
   const { data } = useQueryAutomation(id);
   const { mutate, isPending } = useMutationData(

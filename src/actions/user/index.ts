@@ -5,6 +5,7 @@ import { log } from "console";
 import { redirect } from "next/navigation";
 import {createUser, findUser, updateSubscription} from "./queries"
 import {refreshToken} from"@/lib/fetch"
+import { updateIntegration } from "../integrations/queries";
 
 
  export const onCurrentUser= async()=>{
@@ -14,22 +15,22 @@ return user
 
  };
 
- export const onBoarduser= async()=>{
+ export const onBoardUser= async()=>{
     const user=await onCurrentUser();
     try {
         const found =await findUser(user.id);
         if (found){
-            if(found.integration.length>0){
+            if(found.integrations.length>0){
                 const today= new Date();
                 const time_left=
-                found.intergation[0].expiredAt?.getTime()!-today.getTime();
+                found.integrations[0].expireAt?.getTime()!-today.getTime();
 
 
                 const days= Math.round(time_left/(1000*3000*24));
                 if (days>5){
                     console.log("refresh");
 
-                    const refresh= await refreshToken(found.integration[0].token);
+                    const refresh= await refreshToken(found.integrations[0].token);
 
                     const today= new Date();
                     const expiry_date= today.setDate(today.getDate()+60);
@@ -37,7 +38,7 @@ return user
                     const update_token=await updateIntegration(
                         refresh.access_token,
                         new Date(expiry_date),
-                        found.intergation[0].id
+                        found.integrations[0].id
                     );
                     if(!update_token){console.log("Update token failed");
                     }
@@ -71,6 +72,7 @@ return user
 
  export const onUserInfo= async()=>{
     const user= await currentUser();
+    if (!user) return { status: 400, message: "User not found" };
     try{
         const profile= await findUser(user.id);
         if(profile) return {status:200, data: profile};

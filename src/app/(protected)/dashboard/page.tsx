@@ -1,4 +1,4 @@
-import { onBoardUser } from "@/actions/user";
+import { onBoardUser} from "@/actions/user"
 import { redirect } from "next/navigation";
 
 type Props = {};
